@@ -36,6 +36,11 @@ Route::prefix('articles')->group(function () {
     Route::get('/', [\App\Http\Controllers\ArticleController::class, 'show']);
 });
 
+Route::prefix('post')->group(function () {
+    Route::get('show/{id?}', [\App\Http\Controllers\PostController::class, 'show'])
+        ->name('post.show')->where('id', '\d+');
+});
+
 //Route::get('/test', function () {
 //    return 'test message!';
 //});

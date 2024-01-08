@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -112,8 +113,9 @@ class UserController extends Controller
 
     public function all()
     {
-        $inputData = ['value1' => 'Value1', 'value2' => 'Value2', 'value3' => 'Value3', 'color' => 'red'];
-        return view('user.all', array_merge(['title' => 'User All'], $inputData));
+        $users = DB::table('users')->select('name', 'email as user_email')->get();
+        dd($users);
+        return view('user.all', ['title' => 'User All', 'users' => $users]);
     }
 
     public function name($name)

@@ -2,6 +2,23 @@
 
 <h1>All User</h1>
 <h2>Curent date {{ date('Y.m.d') }}</h2>
-<p><input type="text" value="{{ $value1 }}"></p><br>
-<p style="color: {{ $color }}">Text <input type="text" value="{{ $value2 }}"></p><br>
-<p><input type="text" value="{{ $value3 }}"></p><br>
+<table>
+    <thead>
+    <tr>
+        <td>name</td>
+        <td>email</td>
+        <td>age</td>
+        <td>salary</td>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach($users as $user)
+           <tr>
+               <td>{{ $user->name }}</td>
+               <td>{{ $user->email }}</td>
+               <td>{{ $user->age }}</td>
+               <td>{{ $user->salary }}</td>
+           </tr>
+        @endforeach
+    </tbody>
+</table>

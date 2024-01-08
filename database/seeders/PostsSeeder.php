@@ -16,6 +16,6 @@ class PostsSeeder extends Seeder
     public function run()
     {
         $users = User::factory(10)->create();
-        Post::factory(20)->create(['author' => $users->random()]);
+        Post::factory(20)->create(['author_id' => $users->random()]);
     }
 }

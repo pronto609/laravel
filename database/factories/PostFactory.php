@@ -18,7 +18,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(rand(3, 6)),
             'slug' => $this->faker->slug(),
             'likes' => $this->faker->numberBetween(10, 50),
-            'author' => User::factory()
+            'author_id' => User::factory()
         ];
     }
 }
