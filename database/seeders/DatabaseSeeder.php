@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
+use App\Models\Country;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\DateFactory;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +26,7 @@ class DatabaseSeeder extends Seeder
             $user['name'] = Str::random(10);
             $user['email'] = Str::random(10) . '@' . Str::random(5) . 'com';
             $user['birthday'] = rand(1990, 2006) . '-' . rand(1, 12) . '-' . rand(1, 31);
+            $user['password'] = Hash::make('12345');
             $users[] = $user;
         }
 
@@ -33,6 +37,13 @@ class DatabaseSeeder extends Seeder
 //                'birthday' => '2000-04-04'
 //            ]
 //        ]);
-        DB::table('users')->insert($users);
+//        DB::table('users')->insert($users);
+//        $countries = Country::factory()->count(5)->create();
+//        City::factory()->count(5)->create(['country_id' => $countries->random()]);
+        $this->call([
+            CountriesSeeder::class,
+            CitiesSeeder::class,
+            PostsSeeder::class
+        ]);
     }
 }
