@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -113,8 +114,53 @@ class UserController extends Controller
 
     public function all()
     {
-        $users = DB::table('users')->select('name', 'email as user_email')->get();
-        dd($users);
+//        $users = DB::table('users')->select('name', 'email as user_email')->get();
+//        $users = DB::table('users')->where('age', '<=', 31)->get();
+//        $users = DB::table('users')
+//            ->where('age', '>', 20)
+//            ->where('age', '<', 40)
+//            ->get();
+//        $users = DB::table('users')
+//            ->where('age', '=', 31)
+//            ->orWhere('id', '>', 4)
+//            ->get();
+//        $users = DB::table('users')
+//            ->where('age', '=', 31)
+//            ->orWhere('salary', '>', 3000)
+//            ->orWhere('id', '>', 7)
+//            ->get();
+//        $users = DB::table('users')
+//            ->where('salary', '>', 3000)
+//            ->orWhere(function (Builder $query) {
+//                $query->where('age', '>=20')
+//                    ->where('age', '<=', 30);
+//            })
+//            ->get();
+//        $users = DB::table('users')
+//            ->orWhere(function (Builder $query) {
+//                $query
+//                    ->where('salary', '>=', 500)
+//                    ->where('salary', '<=', 1000);
+//            })
+//            ->orWhere(function (Builder $query) {
+//                $query->where('age', '>=20')
+//                    ->where('age', '<=', 30);
+//            })
+//            ->get();
+//        $users = DB::table('users')
+//            ->orWhere(function (Builder $query) {
+//                $query
+//                    ->where('salary', '>=', 500)
+//                    ->where('salary', '<=', 1000);
+//            })
+//            ->orWhere(function (Builder $query) {
+//                $query->where('age', '>=20')
+//                    ->where('age', '<=', 30);
+//            })
+//            ->get();
+//        $users = DB::table('users')->where('id', '=', 3)->first();
+        $users = DB::table('users')->pluck('name');
+//        dd($users);
         return view('user.all', ['title' => 'User All', 'users' => $users]);
     }
 

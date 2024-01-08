@@ -2,6 +2,7 @@
 
 <h1>All User</h1>
 <h2>Curent date {{ date('Y.m.d') }}</h2>
+@if(count($users) > 1 && isset($users[0]->email))
 <table>
     <thead>
     <tr>
@@ -22,3 +23,10 @@
         @endforeach
     </tbody>
 </table>
+@else
+    <ul>
+        @foreach($users as $user)
+            <li>{{ $user }}</li>
+        @endforeach
+    </ul>
+@endif
