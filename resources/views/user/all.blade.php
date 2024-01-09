@@ -6,19 +6,24 @@
 <table>
     <thead>
     <tr>
+        <td>id</td>
         <td>name</td>
         <td>email</td>
         <td>age</td>
         <td>salary</td>
+        <td>created at</td>
     </tr>
     </thead>
     <tbody>
         @foreach($users as $user)
            <tr>
+{{--               {{ dd($user) }}--}}
+               <td>{{ $user->id }}</td>
                <td>{{ $user->name }}</td>
                <td>{{ $user->email }}</td>
                <td>{{ $user->age }}</td>
                <td>{{ $user->salary }}</td>
+               <td>{{ $user->created_at }}</td>
            </tr>
         @endforeach
     </tbody>
@@ -26,7 +31,8 @@
 @else
     <ul>
         @foreach($users as $user)
-            <li>{{ $user }}</li>
+{{--            {{ dd($user->name) }}--}}
+            <li>{{ $user->name }}</li>
         @endforeach
     </ul>
 @endif

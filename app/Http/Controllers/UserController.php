@@ -159,8 +159,67 @@ class UserController extends Controller
 //            })
 //            ->get();
 //        $users = DB::table('users')->where('id', '=', 3)->first();
-        $users = DB::table('users')->pluck('name');
+//        $users = DB::table('users')->pluck('name');
 //        dd($users);
+//        $users = DB::table('users')->whereBetween('age', [30, 40])->get();
+//        $users = DB::table('users')->whereNotBetween('age', [30, 40])->get();
+//        $users = DB::table('users')->whereIn('id', [1, 2, 3, 5])->get();
+//        $users = DB::table('users')->whereNotIn('id', [1, 2, 3, 5])->get();
+//        dd($users);
+//        $users = DB::table('users')->whereId(3)->get()->toArray();
+//        $users = DB::table('users')->whereName('John')->get()->toArray();
+//        dd($users->getItems());
+//        $users = DB::table('users')->whereIdOrAge(3, 20)->get()->toArray();
+//        $users = DB::table('users')->orderBy('age', 'desc')->get();
+//        $users = DB::table('users')->orderBy('salary', 'desc')->get();
+//        $users = DB::table('users')
+//            ->where('age', '>', '30')
+//            ->oldest()->get();
+//        $users = DB::table('users')->oldest('age')->get();
+//        $users = DB::table('users')->where('age', '>', 30)->latest('age')->get();
+//        $users = DB::table('users')->inRandomOrder()->get();
+//        $users = DB::table('users')->first();
+//        $users = DB::table('users')->whereBetween('age', [20, 30])->inRandomOrder()->get();
+//        $users = DB::table('users')->whereBetween('age', [20, 30])->inRandomOrder()->first();
+//        $users = DB::table('users')->whereBetween('age', [20, 30])->take(3)->get();
+//        $users = DB::table('users')->take(5)->get();
+//        $users = DB::table('users')->skip(4)->take(10)->get();
+//        $users = DB::table('users')->whereBetween('age', [18, 40])->skip(2)->take(10)->get();
+//        $users = DB::table('users')->insertGetId([
+//            'name' => 'John Koha',
+//            'email' => 'johnkoha@gmail.com',
+//            'age' => 62,
+//            'salary' => 3200
+//        ]);
+//        $users = DB::table('users')->insert([
+//            [
+//                'name' => 'John Loma',
+//                'email' => 'johnloma@gmail.com',
+//                'age' => 63,
+//                'salary' => 3300
+//            ],
+//            [
+//                'name' => 'John Dem',
+//                'email' => 'johndem@gmail.com',
+//                'age' => 65,
+//                'salary' => 3400
+//            ],
+//        ]);
+//        dd($users);
+//        DB::table('users')->where('id', 41)
+//            ->update([
+//               'age' => 70
+//            ]);
+//        DB::table('users')->where('age', '>', 60)
+//            ->update([
+//                'salary' => 4000
+//            ]);
+//        DB::table('users')->where('id', 42)->increment('age');
+//        DB::table('users')->where('id', 43)->decrement('age');
+//        DB::table('users')->where('age', '>', 60)->increment('salary', 50);
+        $users = DB::table('posts')->leftJoin('users', 'posts.author_id', '=', 'users.id')
+        ->get();
+        dd($users);
         return view('user.all', ['title' => 'User All', 'users' => $users]);
     }
 
